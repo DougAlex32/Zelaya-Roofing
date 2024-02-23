@@ -1,0 +1,78 @@
+.footer-container {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-gap: 40px;
+    align-items: start; /* For grid, 'start' is valid. If you encounter issues, consider specifics of the warning context */
+    justify-content: center;
+    text-align: left;
+}
+
+.location, .phone, .email, .right {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start; /* Use 'flex-start' for flex container alignment */
+}
+
+.location > div, .phone, .email {
+    margin-bottom: 1rem;
+}
+
+.right {
+    padding: 1rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start; /* Ensures consistency in alignment for flex containers */
+}
+
+.footer h4, .footer p { /* Combined selector for both <h4> and <p> tags */
+    color: white; /* Sets text color to white */
+    font-size: 1.1rem; /* Adjust if necessary. Example for <h4>, adjust separately for <p> if needed */
+    padding: 0.1rem 0;
+}
+
+.footer p {
+    font-size: 1rem; /* Slightly smaller font size for <p> tags, adjust as needed */
+    /* Inherits color and padding from combined selector above */
+}
+
+
+
+
+
+
+@media screen and (min-width: 768px) {
+    .footer {
+        padding: 6rem 0; /* Original padding */
+    }
+
+    .footer-container {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr); /* Two-column layout */
+        grid-gap: 40px; /* Original gap */
+    }
+
+    .footer .left, .footer .right {
+        padding: 1rem;
+        margin: 0; /* Remove auto margin */
+    }
+
+    .footer h4 {
+        font-size: 1.2rem; /* Original font size */
+        padding: 0.1rem 0; /* Original padding */
+    }
+
+    .footer p {
+        font-size: 1.3rem; /* Original font size */
+        padding: 0.1rem 0; /* Original padding */
+    }
+
+    .footer .location {
+        flex-direction: row; /* Original flex direction */
+    }
+
+    .footer .location p {
+        padding-bottom: .5rem; /* Original padding */
+    }
+} 
