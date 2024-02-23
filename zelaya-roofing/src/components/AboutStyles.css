@@ -1,0 +1,40 @@
+.about-container {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+    padding: 20px;
+  }
+  
+  .about-image img {
+    max-width: 50%; /* Adjust the width to control the image size */
+    max-height: 400px; /* Set a maximum height to ensure the image is not too tall */
+    height: auto; /* Maintain aspect ratio */
+    border-radius: 10px; /* Optional: for styled image edges */
+  }
+  
+  .about-text {
+    max-width: 600px;
+    /* Adding some padding to the text can also help align things visually */
+    padding: 20px;
+  }
+  
+  @media (max-width: 768px) {
+    .about-container {
+      flex-direction: column;
+    }
+  
+    .about-image img {
+      max-width: 80%; /* Allow the image to be a bit wider on smaller screens, adjust as needed */
+      max-height: 300px; /* Adjust the maximum height for smaller screens */
+      margin: 0 auto; /* Center the image */
+    }
+  
+    .about-text {
+      /* Ensure the text block does not have excessive padding on small screens */
+      padding: 10px;
+    }
+  }
+  
+  

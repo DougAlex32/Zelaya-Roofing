@@ -25,7 +25,7 @@ const Footer = () => {
                     </div>
                 </div>
                 <div className='right'>
-                    <h4>Est. 2013</h4>
+                    <h4>Est. 2003</h4>
                     <p>20+ years of long service helping communities all over Texas!</p>
             </div>
             </div>

@@ -27,7 +27,7 @@
 }
 
 .footer h4, .footer p { /* Combined selector for both <h4> and <p> tags */
-    color: white; /* Sets text color to white */
+    color: black; /* Sets text color to white */
     font-size: 1.1rem; /* Adjust if necessary. Example for <h4>, adjust separately for <p> if needed */
     padding: 0.1rem 0;
 }

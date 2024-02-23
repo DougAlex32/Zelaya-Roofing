@@ -1,0 +1,123 @@
+/* Service Cards Container */
+.services-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+    padding: 20px;
+  }
+  
+  /* Individual Service Card */
+  .service-card {
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    overflow: hidden;
+    cursor: pointer;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    transition: box-shadow 0.3s ease;
+  }
+  
+  .service-card:hover {
+    box-shadow: 0 6px 12px rgba(0,0,0,0.2);
+  }
+  
+  .service-card img {
+    width: 100%;
+    height: auto;
+    display: block;
+  }
+  
+  .service-card h3 {
+    margin: 0;
+    padding: 15px;
+    text-align: center;
+    background-color: #f8f8f8; /* Light grey background for the title */
+  }
+  
+  /* Modal Backdrop */
+  .modal-backdrop {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.6);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000; /* Make sure the modal is on top of other content */
+  }
+  
+  
+  
+  .modal-content img {
+    max-width: 100%;
+    height: auto;
+    margin-top: 15px;
+    border-radius: 8px; /* Optional: for styled image edges */
+  }
+  
+  .close-modal {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    cursor: pointer;
+    font-size: 1.5rem;
+    background: none;
+    border: none;
+  }
+  
+  .modal-content {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+    position: relative;
+    max-width: 600px;
+    width: 90%;
+    max-height: 90vh; /* Limit height to 90% of viewport */
+    overflow-y: auto; /* Enable vertical scrolling */
+  }
+
+  .modal-content button {
+    padding: 10px 20px;
+    margin-top: 20px;
+    border: none;
+    color: rgb(236, 135, 135);
+    cursor: pointer;
+    border-radius: 5px;
+    font-weight: bold;
+  }
+  
+  /* Specific styling for the Contact button */
+  .contact-btn {
+    background-color: #aa0909; /* Bootstrap primary blue for example */
+    margin-right: 10px;
+  }
+  
+  .contact-btn:hover {
+    background-color: #d63838; /* A slightly darker blue on hover */
+  }
+  
+  /* Styling for the Close button for consistency */
+  .close-modal {
+    background-color: #d85e5e; /* Bootstrap secondary color for example */
+    color: rgb(220, 113, 113);
+    border-radius: 5px;
+    padding: 5px 10px;
+  }
+  
+  .close-modal:hover {
+    background-color: #5a6268; /* Darker shade for hover state */
+  }
+
+  @media (max-width: 768px) {
+    .modal-content button {
+      padding: 8px 15px; /* Slightly smaller padding */
+    }
+    
+    .modal-content {
+      width: 80%; /* You already have this, just reiterating its importance */
+      padding: 15px; /* Optionally adjust padding */
+    }
+  }
