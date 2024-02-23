@@ -14,10 +14,10 @@ const Video = () => {
         <p>Building Homes with A Foundation In God.</p>
 
         <div>
-          <Link to="/about" className="btn">
+          <Link to="/contact" className="btn">
             Let's Talk
           </Link>
-          <Link to="/contact" className="btn btn-light">
+          <Link to="/about" className="btn btn-light">
             Learn More
           </Link>
         </div>
