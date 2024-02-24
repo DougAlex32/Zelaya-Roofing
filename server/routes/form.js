@@ -1,11 +1,11 @@
 const express = require('express');
 const router = express.Router();
-const YourModel = require('../models/YourModel'); // Import your Mongoose model
+const Model = require('../models/Model'); // Import your Mongoose model
 
 router.post('/api/form', async (req, res) => {
   try {
     const { name, email, issue, details } = req.body;
-    const newSubmission = new YourModel({
+    const newSubmission = new Model({
       name,
       email,
       issue,

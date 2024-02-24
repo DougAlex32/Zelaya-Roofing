@@ -5,9 +5,8 @@ const schema = new mongoose.Schema({
   email: String,
   issue: String,
   details: String,
-  // Add timestamps, or any other fields you need
 }, { timestamps: true });
 
-const YourModel = mongoose.model('YourModel', schema);
+const Model = mongoose.model('Model', schema);
 
-module.exports = YourModel;
+module.exports = Model;
