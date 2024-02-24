@@ -10,6 +10,8 @@ connectDB();
 
 const app = express();
 
+require('./config/passport');
+
 app.use(cors());
 
 app.use(session({
@@ -19,7 +21,8 @@ app.use(session({
     cookie: { secure: false } 
   }));
   
-  
+app.use(passport.initialize());
+app.use(passport.session());
  
 app.use(express.json());
 app.use(formRoutes);
