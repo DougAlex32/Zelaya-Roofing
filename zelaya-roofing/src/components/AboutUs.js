@@ -1,6 +1,6 @@
 import React from "react";
-import "./AboutStyles.css"; // Ensure this path is correct
-import aboutImage from '../assets/about.jpg'; // Adjust the path according to your project structure
+import "./AboutStyles.css"; 
+import aboutImage from '../assets/about.jpg'; 
 
 const AboutUs = () => {
   return (

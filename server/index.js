@@ -10,6 +10,8 @@ connectDB();
 
 const app = express();
 
+app.set('view engine', 'ejs');
+
 require('./config/passport');
 
 app.use(cors());
@@ -18,7 +20,7 @@ app.use(session({
     secret: process.env.SESSION_SECRET, 
     resave: false, 
     saveUninitialized: true, 
-    cookie: { secure: false } 
+    cookie: { secure: true } 
   }));
   
 app.use(passport.initialize());

@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Welcome to Zelaya Roofing</title>
+</head>
+<body>
+    <h1>Welcome to the Zelaya Roofing API!</h1>
+    <% if (user) { %>
+        <a href="/logout"><i class="material-icons left">trending_flat</i>Logout</a>
+        <p>Hello, <%= user.displayName %>!</p> 
+    <% } else { %>
+        <a href="/auth/google"><i class="material-icons left">vpn_key</i> Login With Google</a>
+        <p>You are not logged in.</p>
+    <% } %>
+</body>
+</html>
