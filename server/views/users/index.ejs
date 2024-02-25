@@ -7,7 +7,7 @@
 <body>
     <h1><%= title %></h1>
     <% if (user) { %>
-        <a href="/logout"><i class="material-icons left">trending_flat</i>Logout</a>
+        <a href="/auth/logout"><i class="material-icons left">trending_flat</i>Logout</a>
         <p>Hello, <%= user.displayName %>!</p> 
     <% } else { %>
         <a href="/auth/google"><i class="material-icons left">vpn_key</i> Login With Google</a>

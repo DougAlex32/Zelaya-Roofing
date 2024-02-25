@@ -6,6 +6,7 @@ const cors = require('cors');
 const session = require('express-session');
 const passport = require("passport");
 const authRoutes = require('./routes/auth');
+const path = require('path');
 
 connectDB();
 
@@ -30,8 +31,10 @@ app.use(passport.session());
  
 app.use(express.json());
 app.use(formRoutes);
+// app.use(express.static(path.join(__dirname, 'build')));
 
-app.use('/', authRoutes);
+
+app.use('/auth', authRoutes);
 
 app.get('/oauth2callback', passport.authenticate('google', {
     successRedirect: '/',
@@ -43,6 +46,18 @@ app.get('/', (req, res) => {
         title: 'Welcome to Zelaya Roofing', 
         user: req.user || null });
   });
+
+  app.get('/login', (req, res) => {
+    // If serving a view
+    // res.render('users/index');
+
+    // Or, if redirecting to initiate Google OAuth
+    res.redirect('/');
+});
+
+// app.get('*', (req, res) => {
+//     res.sendFile(path.join(__dirname, 'build', 'index.html'));
+//   });
 
   
 

@@ -26,7 +26,7 @@ router.get('/oauth2callback', passport.authenticate('google',{
     failureRedirect: '/'
 }));
 
-router.get('/logout', function(req,res){
+router.get('/auth/logout', function(req,res){
     req.logOut();
     res.redirect('/');
 })

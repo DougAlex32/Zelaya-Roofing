@@ -33,7 +33,7 @@
 <body>
     <h1>Welcome to Zelaya Roofing API!</h1>
     <% if (user) { %>
-        <a href="/logout" class="auth-link">Logout</a>
+        <a href="/auth/logout" class="auth-link">Logout</a>
         <p>Hello, <%= user.displayName %>!</p> 
     <% } else { %>
         <a href="/auth/google" class="auth-link">Login With Google</a>
