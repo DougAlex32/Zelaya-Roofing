@@ -18,14 +18,18 @@ router.get('/google/callback',
 
 // Logout route
 router.get('/logout', (req, res) => {
-    req.logout(); 
-    req.session.destroy(); 
-    res.redirect('/'); 
+    req.logout(function(err) {
+        if (err) { return next(err); }
+        req.session.destroy(() => {
+            res.redirect('/'); // Redirect after logging out and destroying the session
+        });
+    }); 
 });
+
 
 const oauth2Client = new google.auth.OAuth2(
     process.env.GOOGLE_CLIENT_ID,
-    process.env.GOOGLE_CLIENT_SECRET,
+    process.env.GOOGLE_SECRET,
     process.env.GOOGLE_REDIRECT_URL
   );
   
@@ -42,7 +46,7 @@ const oauth2Client = new google.auth.OAuth2(
       include_granted_scopes: true
     });
   
-    // Redirect the user to the Google authorization URL
+    
     res.redirect(authorizationUrl);
   });
 

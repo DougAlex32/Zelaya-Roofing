@@ -31,13 +31,20 @@ app.use(passport.session());
 app.use(express.json());
 app.use(formRoutes);
 
-app.use('/auth', authRoutes);
+app.use('/', authRoutes);
+
+app.get('/oauth2callback', passport.authenticate('google', {
+    successRedirect: '/',
+    failureRedirect: '/login'
+}));
 
 app.get('/', (req, res) => {
     res.render('index', { 
         title: 'Welcome to Zelaya Roofing', 
         user: req.user || null });
   });
+
+  
 
 const PORT = process.env.PORT || 3001;
 
