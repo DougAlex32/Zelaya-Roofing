@@ -4,14 +4,39 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Welcome to Zelaya Roofing</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin-top: 50px;
+        }
+        .auth-link {
+            display: inline-block;
+            background-color: #007bff;
+            color: white;
+            padding: 10px 20px;
+            text-decoration: none;
+            border-radius: 5px;
+            margin-top: 20px;
+            font-weight: bold;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.2); /* Add a subtle shadow for depth */
+            transition: background-color 0.3s, box-shadow 0.3s; /* Smooth transition for hover effect */
+        }
+        .auth-link:hover, .auth-link:focus {
+            background-color: #0056b3; /* Darker shade for hover state */
+            box-shadow: 0 4px 8px rgba(0,0,0,0.3); /* Larger shadow for hover state */
+            color: #ffffff;
+            text-decoration: none;
+        }
+    </style>
 </head>
 <body>
-    <h1>Welcome to the Zelaya Roofing API!</h1>
+    <h1>Welcome to Zelaya Roofing API!</h1>
     <% if (user) { %>
-        <a href="/logout"><i class="material-icons left">trending_flat</i>Logout</a>
+        <a href="/logout" class="auth-link">Logout</a>
         <p>Hello, <%= user.displayName %>!</p> 
     <% } else { %>
-        <a href="/auth/google"><i class="material-icons left">vpn_key</i> Login With Google</a>
+        <a href="/auth/google" class="auth-link">Login With Google</a>
         <p>You are not logged in.</p>
     <% } %>
 </body>
