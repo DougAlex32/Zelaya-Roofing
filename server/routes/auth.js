@@ -22,7 +22,7 @@ router.get('/logout', (req, res) => {
       if (err) { return next(err); }
       req.session.destroy(() => {
           res.clearCookie('connect.sid'); // Clear the session cookie
-          res.redirect('/login'); // Make sure this path is correctly handled
+          res.redirect('/'); 
       });
   }); 
 });
