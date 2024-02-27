@@ -9,13 +9,17 @@ const authRoutes = require('./routes/auth');
 const path = require('path');
 const jwt = require('jsonwebtoken');
 const { expressjwt: expressJwt } = require('express-jwt');
+const FormSubmission = require('./models/FormSubmission');
 
 connectDB();
 
 const app = express();
 app.set('view engine', 'ejs');
 require('./config/passport');
-app.use(cors());
+app.use(cors({
+    credentials: true,
+    origin: 'http://localhost:3000' // Or wherever your client is hosted
+  }));
 
 app.use(session({
   secret: process.env.SESSION_SECRET,
@@ -28,6 +32,8 @@ app.use(passport.session());
 app.use(express.json());
 app.use(formRoutes);
 app.use('/auth', authRoutes);
+app.use(express.static(path.join(__dirname, '..', 'zelaya-roofing', 'build')));
+
 
 // JWT middleware for protected routes
 const requireAuth = expressJwt({
@@ -54,20 +60,80 @@ app.post('/api/login', (req, res) => {
   // Your authentication logic here
 });
 
+app.get('/auth/google',
+  passport.authenticate('google', { scope: ['profile', 'email'] }))
+
 // Serve React app - make sure this is last
-app.get('*', (req, res) => {
-  res.sendFile(path.join(__dirname, 'build', 'index.html'));
-});
+app.get('/login', (req, res, next) => {
+  // Example condition: check if a specific header or cookie is set
+  if (!req.headers['x-admin-auth']) {
+    return res.status(403).send('Access denied');
+  }
+  next();
+}, passport.authenticate('google', { scope: ['profile', 'email'] }));
 
 app.get('/auth/google/callback', 
   passport.authenticate('google', { failureRedirect: '/login' }),
   function(req, res) {
-    // Access user and token from the authentication info
-    const { user, token } = req.user;
-    // Or, set a cookie with the JWT (ensure your site is served over HTTPS if doing this)
-    res.cookie('jwt', token, { httpOnly: true, secure: true }).redirect('/dashboard');
+    // Generate JWT for the user
+    const token = jwt.sign({ userId: req.user.id }, process.env.JWT_SECRET, { expiresIn: '24h' });
+
+    // Set HTTP-only cookie with JWT token
+    res.cookie('jwt', token, { 
+        httpOnly: true, 
+        secure: process.env.NODE_ENV === 'production',
+        sameSite:'strict' })
+       .redirect('/dashboard'); 
   }
-)
+);
+
+app.get('*', (req, res) => {
+  res.sendFile(path.join(__dirname, '..', 'zelaya-roofing', 'build', 'index.html'));
+});
+
+app.get('/api/user', (req, res) => {
+    // Assuming you have middleware to verify JWT and attach user to req
+    if (!req.user) {
+      return res.status(401).json({ message: 'Not authenticated' });
+    }
+  
+    // Respond with user data
+    res.json({ user: req.user });
+  });
+
+  const isAuthenticated = expressJwt({
+    secret: process.env.JWT_SECRET, // The secret used to sign the JWT
+    algorithms: ['HS256'], // Specify the algorithm used for JWT
+    getToken: (req) => req.cookies.jwt, // Get the token from request cookies
+  });
+  app.get('/api/dashboard', isAuthenticated, async (req, res) => {
+    try {
+      const submissions = await FormSubmission.find(); // Assuming FormSubmission is your model
+      res.json(submissions);
+    } catch (error) {
+      console.error('Failed to fetch submissions:', error);
+      res.status(500).send('Server error');
+    }
+  });
+
+  app.post('/api/form', async (req, res) => {
+    try {
+        const { name, email, issue, details } = req.body;
+        const newSubmission = new FormSubmission({
+            name,
+            email,
+            issue,
+            details
+        });
+
+        await newSubmission.save();
+        res.status(201).json({ message: 'Form submission saved successfully.' });
+    } catch (error) {
+        console.error('Error saving form submission:', error);
+        res.status(500).json({ error: 'Internal server error' });
+    }
+});
+  
 
 const PORT = process.env.PORT || 3001;
 app.listen(PORT, () => console.log(`Server started on port ${PORT}`));

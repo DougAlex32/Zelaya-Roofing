@@ -9,6 +9,7 @@
     <% if (user) { %>
         <a href="/auth/logout"><i class="material-icons left">trending_flat</i>Logout</a>
         <p>Hello, <%= user.displayName %>!</p> 
+       
     <% } else { %>
         <a href="/auth/google"><i class="material-icons left">vpn_key</i> Login With Google</a>
         <p>You are not logged in.</p>

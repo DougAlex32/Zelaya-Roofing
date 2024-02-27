@@ -35,6 +35,7 @@
     <% if (user) { %>
         <a href="/auth/logout" class="auth-link">Logout</a>
         <p>Hello, <%= user.displayName %>!</p> 
+        <a href="/dashboard" class="dashboard-link">Go to Dashboard</a>
     <% } else { %>
         <a href="/auth/google" class="auth-link">Login With Google</a>
         <p>You are not logged in.</p>

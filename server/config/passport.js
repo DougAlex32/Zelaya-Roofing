@@ -18,6 +18,7 @@ passport.use(
           const token = jwt.sign({ userId: user.id }, process.env.JWT_SECRET, {
             expiresIn: "24h",
           });
+          console.log("Generated JWT token:", token);
           // Attach the token to the user object or pass it through the done callback
           return done(null, { user, token });
         } else {
