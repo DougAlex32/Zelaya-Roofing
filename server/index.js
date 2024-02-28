@@ -64,13 +64,13 @@ app.get('/auth/google',
   passport.authenticate('google', { scope: ['profile', 'email'] }))
 
 // Serve React app - make sure this is last
-app.get('/login', (req, res, next) => {
-  // Example condition: check if a specific header or cookie is set
-  if (!req.headers['x-admin-auth']) {
-    return res.status(403).send('Access denied');
-  }
-  next();
-}, passport.authenticate('google', { scope: ['profile', 'email'] }));
+// Removing the conditional header check for demonstration purposes
+app.get('/login', (req, res) => {
+  res.render('index', {
+    user: req.user || null 
+  });
+});
+
 
 app.get('/auth/google/callback', 
   passport.authenticate('google', { failureRedirect: '/login' }),
@@ -92,7 +92,7 @@ app.get('*', (req, res) => {
 });
 
 app.get('/api/user', (req, res) => {
-    // Assuming you have middleware to verify JWT and attach user to req
+   
     if (!req.user) {
       return res.status(401).json({ message: 'Not authenticated' });
     }
@@ -108,7 +108,7 @@ app.get('/api/user', (req, res) => {
   });
   app.get('/api/dashboard', isAuthenticated, async (req, res) => {
     try {
-      const submissions = await FormSubmission.find(); // Assuming FormSubmission is your model
+      const submissions = await FormSubmission.find(); 
       res.json(submissions);
     } catch (error) {
       console.error('Failed to fetch submissions:', error);
