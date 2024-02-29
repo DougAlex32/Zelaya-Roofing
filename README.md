@@ -55,75 +55,71 @@ A step by step series of examples that tell you how to get a development environ
 
 The backend part of the project is structured as follows:
 
+```plaintext
 server/
 │
-├── config/ # Configuration files for the server
-│ ├── db.js # Database configuration
-│ └── passport.js # Passport.js authentication configuration
+├── config/             # Configuration files for the server
+│   ├── db.js           # Database configuration
+│   └── passport.js     # Passport.js authentication configuration
 │
-├── controllers/ # Controller files to handle logic
-│ └── user.js # User-related business logic
+├── controllers/        # Controller files to handle logic
+│   └── user.js         # User-related business logic
 │
-├── models/ # Mongoose models for data representation
-│ ├── FormSubmission.js # Model for form submission data
-│ ├── Model.js # General model (ensure to rename appropriately)
-│ └── User.js # Model for user data
+├── models/             # Mongoose models for data representation
+│   ├── FormSubmission.js  # Model for form submission data
+│   ├── Model.js          # General model (ensure to rename appropriately)
+│   └── User.js           # Model for user data
 │
-├── routes/ # API route definitions
-│ ├── auth.js # Routes for authentication
-│ ├── form.js # Routes for form submissions
-│ ├── index.js # Main route index (if used for routing)
-│ └── users.js # Routes for user management
+├── routes/             # API route definitions
+│   ├── auth.js         # Routes for authentication
+│   ├── form.js         # Routes for form submissions
+│   ├── index.js        # Main route index (if used for routing)
+│   └── users.js        # Routes for user management
 │
-├── views/ # Views/templates for server-side rendering (if used)
-│ └── users/ # User-related views
+├── views/              # Views/templates for server-side rendering (if used)
+│   └── users/          # User-related views
 │
-├── node_modules/ # Node modules (not committed to version control)
+├── node_modules/       # Node modules (not committed to version control)
 │
-├── .env # Environment variables file (not committed to version control)
-├── .gitignore # Specifies intentionally untracked files to ignore
-└── index.js # Entry point for the Express server
+├── .env                # Environment variables file (not committed to version control)
+├── .gitignore          # Specifies intentionally untracked files to ignore
+└── index.js            # Entry point for the Express server
 
-## Frontend Structure
-
-The frontend part of the project, built with React, is organized as follows:
 
 zelaya-roofing/
 │
-├── src/ # Source files for the React application
-│ ├── assets/ # Static assets such as images, fonts, etc.
-│ ├── components/ # Reusable components
-│ | ├── AboutUs.js # Component for the About Us page
-│ | ├── AboutStyles.css # Styles for the About Us component
-│ | ├── Footer.js # Footer component
-│ | ├── FooterStyles.css # Styles for the Footer component
-│ | ├── Form.js # Form component for submissions
-│ | ├── FormStyles.css # Styles for the Form component
-│ | ├── Hero.js # Hero section component
-│ | ├── HeroStyles.css # Styles for the Hero section component
-│ | ├── LoginButton.js # Login button component
-│ | ├── Navbar.js # Navigation bar component
-│ | ├── NavbarStyles.css # Styles for the Navbar component
-│ | ├── PrivateRoute.js # Private route component for protected routes
-│ | ├── Service.js # Service section component
-│ | ├── ServiceStyles.css # Styles for the Service section component
-│ | ├── Video.js # Video component for multimedia content
-│ | └── VideoStyles.css # Styles for the Video component
-│ ├── routes/ # Components representing pages and their specific routes
-│ │ ├── AdminLoginLink.js # Component for admin login link
-│ │ ├── AuthCallbackHandler.js # Handles authentication callback
-│ │ ├── Contact.js # Contact page component
-│ │ ├── Dashboard.js # Dashboard page component
-│ │ ├── Home.js # Home page component
-│ │ ├── Service.js # Service page component
-│ │ └── About.js # About page component
-│ ├── App.js # Main application component where routes are defined
-│ ├── App.test.js # Tests for the App component
-│ ├── index.js # Entry point for the React application
-│ └── index.css # Global CSS styles
+├── src/                     # Source files for the React application
+│   ├── assets/              # Static assets such as images, fonts, etc.
+│   ├── components/          # Reusable components
+│   │   ├── AboutUs.js       # Component for the About Us page
+│   │   ├── AboutStyles.css  # Styles for the About Us component
+│   │   ├── Footer.js        # Footer component
+│   │   ├── FooterStyles.css # Styles for the Footer component
+│   │   ├── Form.js          # Form component for submissions
+│   │   ├── FormStyles.css   # Styles for the Form component
+│   │   ├── Hero.js          # Hero section component
+│   │   ├── HeroStyles.css   # Styles for the Hero section component
+│   │   ├── LoginButton.js   # Login button component
+│   │   ├── Navbar.js        # Navigation bar component
+│   │   ├── NavbarStyles.css # Styles for the Navbar component
+│   │   ├── PrivateRoute.js  # Private route component for protected routes
+│   │   ├── Service.js       # Service section component
+│   │   └── ServiceStyles.css # Styles for the Service section component
+│   ├── routes/              # Components representing pages and their specific routes
+│   │   ├── AdminLoginLink.js  # Component for admin login link
+│   │   ├── AuthCallbackHandler.js  # Handles authentication callback
+│   │   ├── Contact.js       # Contact page component
+│   │   ├── Dashboard.js     # Dashboard page component
+│   │   ├── Home.js          # Home page component
+│   │   ├── Service.js       # Service page component
+│   │   └── About.js         # About page component
+│   ├── App.js               # Main application component where routes are defined
+│   ├── App.test.js          # Tests for the App component
+│   ├── index.js             # Entry point for the React application
+│   └── index.css            # Global CSS styles
 │
-├── .gitignore # Specifies intentionally untracked files to ignore
-├── package-lock.json # Auto-generated file for npm dependencies
-└── package.json # Defines npm behaviors and packages for the project
+├── .gitignore               # Specifies intentionally untracked files to ignore
+├── package-lock.json        # Auto-generated file for npm dependencies
+└── package.json             # Defines npm behaviors and packages for the project
 
 
