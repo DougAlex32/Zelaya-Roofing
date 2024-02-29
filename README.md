@@ -52,6 +52,27 @@ A step by step series of examples that tell you how to get a development environ
 ## WireFrame
 ![Screenshot 2024-02-22 170516](https://github.com/DougAlex32/Zelaya-Roofing/assets/142261380/33f89230-a9f4-447c-8ec5-b1e012761072)
 
+
+
+# Built With
+
+This project is built with the following technologies and frameworks:
+
+- [React](https://reactjs.org/) - A JavaScript library for building user interfaces, used for the frontend development.
+- [Node.js](https://nodejs.org/) - A JavaScript runtime built on Chrome's V8 JavaScript engine, used to run JavaScript on the server-side.
+- [Express](https://expressjs.com/) - A minimal and flexible Node.js web application framework, used to build the backend API.
+- [MongoDB](https://www.mongodb.com/) - A NoSQL database used to store application data.
+- [OAuth](https://oauth.net/) - An open standard for access delegation, used for user authentication.
+- [React Router](https://reactrouter.com/) - A collection of navigational components that compose declaratively with your application, used for handling routing in the React application.
+
+## Additional Tools and Libraries:
+
+- [Mongoose](https://mongoosejs.com/) - Elegant MongoDB object modeling for Node.js, used for data modeling and interaction with MongoDB.
+- [dotenv](https://www.npmjs.com/package/dotenv) - A module that loads environment variables from a `.env` file into `process.env`, used for managing environment variables.
+- [jsonwebtoken](https://www.npmjs.com/package/jsonwebtoken) - An implementation of JSON Web Tokens for Node.js, used for creating JWTs for secure authentication.
+
+
+
 # Application File Structure
 
 ```plaintext
