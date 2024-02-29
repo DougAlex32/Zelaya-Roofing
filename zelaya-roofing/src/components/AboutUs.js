@@ -1,6 +1,7 @@
 import React from "react";
 import "./AboutStyles.css"; 
 import aboutImage from '../assets/about.jpg'; 
+import LoginButton from './LoginButton';
 
 const AboutUs = () => {
   return (
@@ -25,6 +26,7 @@ const AboutUs = () => {
           excellence. Contact us today to experience the difference of our
           dedicated approach.
         </p>
+        <LoginButton /> 
       </div>
     </div>
   );

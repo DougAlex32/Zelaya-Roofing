@@ -41,10 +41,20 @@ const requireAuth = expressJwt({
   algorithms: ['HS256'],
 });
 
-app.get('/oauth2callback', passport.authenticate('google', {
-  successRedirect: '/',
-  failureRedirect: '/login'
-}));
+app.get('/oauth2callback', (req, res, next) => {
+  passport.authenticate('google', (err, user, info) => {
+    if (err) { return next(err); }
+    if (!user) { return res.redirect('/'); } // Use your failureRedirect here
+    
+    req.logIn(user, (err) => {
+      if (err) { return next(err); }
+      // Redirect to the URL defined in CLIENT_BASE_URL environment variable
+      const redirectTo = process.env.CLIENT_BASE_URL || '/';
+      return res.redirect(redirectTo);
+    });
+  })(req, res, next);
+});
+
 
 app.get('/', (req, res) => {
   res.render('index', { title: 'Welcome to Zelaya Roofing', user: req.user || null });
@@ -63,27 +73,24 @@ app.post('/api/login', (req, res) => {
 app.get('/auth/google',
   passport.authenticate('google', { scope: ['profile', 'email'] }))
 
-// Serve React app - make sure this is last
-// Removing the conditional header check for demonstration purposes
-app.get('/login', (req, res) => {
-  res.render('index', {
-    user: req.user || null 
-  });
-});
 
 
 app.get('/auth/google/callback', 
-  passport.authenticate('google', { failureRedirect: '/login' }),
+  passport.authenticate('google', { failureRedirect: '/' }),
   function(req, res) {
     // Generate JWT for the user
-    const token = jwt.sign({ userId: req.user.id }, process.env.JWT_SECRET, { expiresIn: '24h' });
+  if (req.user){
 
-    // Set HTTP-only cookie with JWT token
-    res.cookie('jwt', token, { 
-        httpOnly: true, 
-        secure: process.env.NODE_ENV === 'production',
-        sameSite:'strict' })
-       .redirect('/dashboard'); 
+    const token = jwt.sign({ userId: req.user.id }, process.env.JWT_SECRET, { expiresIn: '24h' });
+    res.json( {
+      token
+    });
+  
+  } else{
+    res.status(401).json({})
+  }
+
+
   }
 );
 
@@ -106,15 +113,16 @@ app.get('/api/user', (req, res) => {
     algorithms: ['HS256'], // Specify the algorithm used for JWT
     getToken: (req) => req.cookies.jwt, // Get the token from request cookies
   });
-  app.get('/api/dashboard', isAuthenticated, async (req, res) => {
+  app.get('/api/dashboard', async (req, res) => {
     try {
-      const submissions = await FormSubmission.find(); 
+      const submissions = await FormSubmission.find({});
       res.json(submissions);
     } catch (error) {
       console.error('Failed to fetch submissions:', error);
-      res.status(500).send('Server error');
+      res.status(500).json({ error: 'Internal server error' });
     }
   });
+  
 
   app.post('/api/form', async (req, res) => {
     try {

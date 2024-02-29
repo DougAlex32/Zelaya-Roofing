@@ -36,5 +36,16 @@
       padding: 10px;
     }
   }
+
+  .login-button {
+    padding: 5px 10px;
+    font-size: 12px;
+    cursor: pointer;
+    background-color: #f0f0f0;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    
+  }
+  
   
   

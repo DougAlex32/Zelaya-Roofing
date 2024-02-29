@@ -1,70 +1,129 @@
-# Getting Started with Create React App
+# Zelaya Roofing
+This an app built to help my parents out with their roofing business. It is a web application that allows them to manage customer information, track projects. 
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## Getting Started
 
-## Available Scripts
+These instructions will get you a copy of the project up and running on your local machine for development and testing purposes.
 
-In the project directory, you can run:
+### Prerequisites
 
-### `npm start`
+What things you need to install the software and how to install them:
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+- Node.js
+- npm or yarn
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+### Installing
 
-### `npm test`
+A step by step series of examples that tell you how to get a development environment running:
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+1. Clone the repository:
+   ```bash
+   git clone https://github.com/DougAlex32/Zelaya-Roofing
 
-### `npm run build`
+   sever dependencies:
+   cd server
+   npm install
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+   client dependencies:
+   cd zelaya-roofing
+   npm install
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+   start server:
+   npm start
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+   open new terminal, start client:
+   npm start
 
-### `npm run eject`
+## Screenshots 
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+# Passport
+![Screenshot 2024-02-28 210438](https://github.com/DougAlex32/Zelaya-Roofing/assets/142261380/379bffd2-d3e8-43a0-bfee-c6c8badff193)
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+# JWt
+![Screenshot 2024-02-28 210854](https://github.com/DougAlex32/Zelaya-Roofing/assets/142261380/d457f239-21b3-4305-b4cc-0edf6349d2e8)
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+# Home webpage
+![Screenshot 2024-02-28 211047](https://github.com/DougAlex32/Zelaya-Roofing/assets/142261380/2dc1a2ef-9dde-4da8-9395-5a04951d7931)
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+# Home moblie page
+![Screenshot 2024-02-28 211219](https://github.com/DougAlex32/Zelaya-Roofing/assets/142261380/aafb8f33-cd8b-49cd-8fa1-888b9d541ed0)
+![Screenshot 2024-02-28 211237](https://github.com/DougAlex32/Zelaya-Roofing/assets/142261380/4ede6f44-f85e-4932-8913-9c5096cbc6c2)
 
-## Learn More
+# Application File Structure
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+## Server-side Structure
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+The backend part of the project is structured as follows:
 
-### Code Splitting
+server/
+│
+├── config/ # Configuration files for the server
+│ ├── db.js # Database configuration
+│ └── passport.js # Passport.js authentication configuration
+│
+├── controllers/ # Controller files to handle logic
+│ └── user.js # User-related business logic
+│
+├── models/ # Mongoose models for data representation
+│ ├── FormSubmission.js # Model for form submission data
+│ ├── Model.js # General model (ensure to rename appropriately)
+│ └── User.js # Model for user data
+│
+├── routes/ # API route definitions
+│ ├── auth.js # Routes for authentication
+│ ├── form.js # Routes for form submissions
+│ ├── index.js # Main route index (if used for routing)
+│ └── users.js # Routes for user management
+│
+├── views/ # Views/templates for server-side rendering (if used)
+│ └── users/ # User-related views
+│
+├── node_modules/ # Node modules (not committed to version control)
+│
+├── .env # Environment variables file (not committed to version control)
+├── .gitignore # Specifies intentionally untracked files to ignore
+└── index.js # Entry point for the Express server
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+## Frontend Structure
 
-### Analyzing the Bundle Size
+The frontend part of the project, built with React, is organized as follows:
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+zelaya-roofing/
+│
+├── src/ # Source files for the React application
+│ ├── assets/ # Static assets such as images, fonts, etc.
+│ ├── components/ # Reusable components
+│ | ├── AboutUs.js # Component for the About Us page
+│ | ├── AboutStyles.css # Styles for the About Us component
+│ | ├── Footer.js # Footer component
+│ | ├── FooterStyles.css # Styles for the Footer component
+│ | ├── Form.js # Form component for submissions
+│ | ├── FormStyles.css # Styles for the Form component
+│ | ├── Hero.js # Hero section component
+│ | ├── HeroStyles.css # Styles for the Hero section component
+│ | ├── LoginButton.js # Login button component
+│ | ├── Navbar.js # Navigation bar component
+│ | ├── NavbarStyles.css # Styles for the Navbar component
+│ | ├── PrivateRoute.js # Private route component for protected routes
+│ | ├── Service.js # Service section component
+│ | ├── ServiceStyles.css # Styles for the Service section component
+│ | ├── Video.js # Video component for multimedia content
+│ | └── VideoStyles.css # Styles for the Video component
+│ ├── routes/ # Components representing pages and their specific routes
+│ │ ├── AdminLoginLink.js # Component for admin login link
+│ │ ├── AuthCallbackHandler.js # Handles authentication callback
+│ │ ├── Contact.js # Contact page component
+│ │ ├── Dashboard.js # Dashboard page component
+│ │ ├── Home.js # Home page component
+│ │ ├── Service.js # Service page component
+│ │ └── About.js # About page component
+│ ├── App.js # Main application component where routes are defined
+│ ├── App.test.js # Tests for the App component
+│ ├── index.js # Entry point for the React application
+│ └── index.css # Global CSS styles
+│
+├── .gitignore # Specifies intentionally untracked files to ignore
+├── package-lock.json # Auto-generated file for npm dependencies
+└── package.json # Defines npm behaviors and packages for the project
 
-### Making a Progressive Web App
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)

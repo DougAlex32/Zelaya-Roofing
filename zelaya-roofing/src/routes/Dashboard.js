@@ -1,36 +1,34 @@
 import React, { useEffect, useState } from 'react';
+import './Dashboard.css';
 
 const Dashboard = () => {
-  const [submissions, setSubmissions] = useState([]);
-  const [error, setError] = useState('');
+  const [submissions] = useState([]);
+  // const [error, setError] = useState('');
 
   useEffect(() => {
     fetch('http://localhost:3001/api/dashboard', {
-      credentials: 'include', // Necessary for cookies to be sent
+      credentials: 'include', // or remove if not needed
     })
     .then(response => {
-      if (response.ok) {
-        return response.json();
-      }
-      throw new Error('Failed to fetch');
+      if (!response.ok) throw new Error('Network response was not ok');
+      return response.json();
     })
-    .then(data => setSubmissions(data))
-    .catch(error => setError(error.message));
+    .then(data => {
+      console.log(data); // Check fetched data
+      // setSubmissions(data); Uncomment and use when reintroducing state
+    })
+    .catch(error => console.error('There was a problem with your fetch operation:', error));
   }, []);
 
-  if (error) {
-    return <div>Error: {error}</div>;
-  }
-
   return (
-    <div>
-      <h2>Dashboard</h2>
+    <div className="dashboard-container">
+      <h2 className="dashboard-header">Dashboard</h2>
       {submissions.map(submission => (
-        <div key={submission._id}>
-          <p>{submission.name}</p>
-          <p>{submission.email}</p>
-          <p>{submission.issue}</p>
-          <p>{submission.details}</p>
+        <div key={submission._id} className="submission-item">
+          <p className="submission-detail"><strong>Name:</strong> {submission.name}</p>
+          <p className="submission-detail"><strong>Email:</strong> {submission.email}</p>
+          <p className="submission-detail"><strong>Issue:</strong> {submission.issue}</p>
+          <p className="submission-detail"><strong>Details:</strong> {submission.details}</p>
         </div>
       ))}
     </div>

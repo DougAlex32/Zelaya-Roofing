@@ -12,27 +12,30 @@ passport.use(
     },
     async function (accessToken, refreshToken, profile, done) {
       try {
+        // Check that profile email matches the env admin
+        const adminEmail = process.env.ADMIN;
+        const profileEmail = profile.emails[0].value;
+
+        if (profileEmail !== adminEmail) {
+          // Email does not match the admin's email, handle accordingly
+          // For instance, you can return done with a "null" user and a message
+          return done(null, false, { message: 'Access restricted to admin only.' });
+        }
+
+        // If the email matches, proceed with finding or creating the user
         let user = await User.findOne({ googleId: profile.id });
         if (user) {
-          // User found, generate a JWT token
-          const token = jwt.sign({ userId: user.id }, process.env.JWT_SECRET, {
-            expiresIn: "24h",
-          });
-          console.log("Generated JWT token:", token);
-          // Attach the token to the user object or pass it through the done callback
-          return done(null, { user, token });
+          // Existing user found, proceed with login
+          return done(null, user);
         } else {
-          // Create a new user and then generate a JWT token
+          // No user found with the Google ID, create a new user
           user = new User({
             googleId: profile.id,
             displayName: profile.displayName,
-            email: profile.emails[0].value,
+            email: profileEmail, // Use the email from the profile
           });
           await user.save();
-          const token = jwt.sign({ userId: user.id }, process.env.JWT_SECRET, {
-            expiresIn: "24h",
-          });
-          return done(null, { user, token });
+          return done(null, user);
         }
       } catch (err) {
         return done(err);
@@ -41,9 +44,10 @@ passport.use(
   )
 );
 
-passport.serializeUser(function(userData, done) {
-  done(null, userData.user.id); 
+passport.serializeUser(function(user, done) {
+  done(null, user._id); // Using _id for MongoDB
 });
+
 
 passport.deserializeUser(async function(id, done) {
   try {
