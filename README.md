@@ -39,7 +39,7 @@ A step by step series of examples that tell you how to get a development environ
 # Passport
 ![Screenshot 2024-02-28 210438](https://github.com/DougAlex32/Zelaya-Roofing/assets/142261380/379bffd2-d3e8-43a0-bfee-c6c8badff193)
 
-# JWt
+# JWT
 ![Screenshot 2024-02-28 210854](https://github.com/DougAlex32/Zelaya-Roofing/assets/142261380/d457f239-21b3-4305-b4cc-0edf6349d2e8)
 
 # Home webpage
@@ -49,11 +49,10 @@ A step by step series of examples that tell you how to get a development environ
 ![Screenshot 2024-02-28 211219](https://github.com/DougAlex32/Zelaya-Roofing/assets/142261380/aafb8f33-cd8b-49cd-8fa1-888b9d541ed0)
 ![Screenshot 2024-02-28 211237](https://github.com/DougAlex32/Zelaya-Roofing/assets/142261380/4ede6f44-f85e-4932-8913-9c5096cbc6c2)
 
+## WireFrame
+![Screenshot 2024-02-22 170516](https://github.com/DougAlex32/Zelaya-Roofing/assets/142261380/33f89230-a9f4-447c-8ec5-b1e012761072)
+
 # Application File Structure
-
-## Server-side Structure
-
-The backend part of the project is structured as follows:
 
 ```plaintext
 server/
@@ -121,5 +120,8 @@ zelaya-roofing/
 ├── .gitignore               # Specifies intentionally untracked files to ignore
 ├── package-lock.json        # Auto-generated file for npm dependencies
 └── package.json             # Defines npm behaviors and packages for the project
+
+
+
 
 
